@@ -234,15 +234,26 @@ function stateList(){
 	function fn_step1_next(obj){
 		var urlParams = new URLSearchParams(window.location.search);
 		var hosname = urlParams.get('hosname');
+		
+		<%--
+		var step2=document.getElementById("step2");
+		var step1=document.getElementById("step1");
+		
+		step1.style.display="none";
+		step2.style.display="block";
+		--%>
 		console.log(hosname);
 		var step3=document.getElementById("step3");
 		var step2=document.getElementById("step2");
 		var step1=document.getElementById("step1");
 		
-		if(hosname.length!=0){
+		if(hosname!=null){
 			step2.style.display="none";
 			step1.style.display="none";
 			step3.style.display="block";
+			var hos__no1=document.getElementById("hos__no1");
+			var hc_hosno = urlParams.get('hos_no');
+			hos__no1.value = hc_hosno;
 		}
 		
 		else{
@@ -250,6 +261,7 @@ function stateList(){
 			step1.style.display="none";
 			step3.style.display="none";
 		}		
+		
 		
 	}
 
@@ -795,13 +807,14 @@ function inputemail(){
 						<div class="right-box mt-4 mb-4" >
 							<main class="form-sign mt-4">
 								<form action="<%=request.getContextPath()%>/reservation/insertReservation.do?action=self" method="post">
-									<input type="hidden" name="hcno" value="${hcno }">
+									<input type="hidden" name="hcno" value="${hcno}">
 									<input type="hidden" name="hosno" value="${hosVO.hosno}">
-									<input type="hidden" name="rname" value="${memVO.mname }">
-									<input type="hidden" name="rbirth1" value="${memVO.mbirth1 }">
-									<input type="hidden" name="rbirth2" value="${memVO.mbirth2 }">
-									<input type="hidden" name="rphone" value="${memVO.mphone }">
-									
+									<!-- 
+									<input type="hidden" name="rname" value="${memVO.mname}">
+									<input type="hidden" name="rbirth1" value="${memVO.mbirth1}">
+									<input type="hidden" name="rbirth2" value="${memVO.mbirth2}">
+									<input type="hidden" name="rphone" value="${memVO.mphone}">
+									-->
 									<div class="m-auto">
 										<!-- 이름 -->
 										<div class="mb-3" style="width:100%;">

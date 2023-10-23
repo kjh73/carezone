@@ -184,7 +184,7 @@ public class ReservationControllerImpl implements ReservationController {
 			String rdate1=request.getParameter("rdate");
 			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 			Date rdate = dateFormat.parse(rdate1);
-			int hosno=Integer.parseInt(request.getParameter("hos__no"));
+			int hosno=Integer.parseInt(request.getParameter("hos_no")); //23-10-23
 			
 			System.out.println("rsubbirth1"+rsubbirth1);
 			
@@ -209,16 +209,17 @@ public class ReservationControllerImpl implements ReservationController {
 
 			System.out.println("셀프존 도착");
 			String rid=memVO.getMid();
-			String rname=request.getParameter("rname");
-			String rbirth1=request.getParameter("rbirth1");
+			String rname=memVO.getMname();
+			String rbirth1=memVO.getMbirth1();
 			System.out.println("rid"+rid);
-			int rbirth2=Integer.parseInt(request.getParameter("rbirth2"));
-			String rphone=request.getParameter("rphone");
+			int rbirth2=memVO.getMbirth2();
+			String rphone=memVO.getMphone();
 			String rhospital=request.getParameter("rhospital");
 			String rvcc=request.getParameter("rvcc");
 			String rdate1=request.getParameter("rdate");
 			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-			Date rdate = dateFormat.parse(rdate1);			
+			Date rdate = dateFormat.parse(rdate1);	
+			System.out.println("hos__no : "+request.getParameter("hos__no"));
 			int hosno=Integer.parseInt(request.getParameter("hos__no"));
 			System.out.println("rhospital"+rhospital);
 			

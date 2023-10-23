@@ -93,11 +93,11 @@ document.addEventListener("DOMContentLoaded", function() {
 		} --%>
 	}
 	
-	function fn_myresv(){
+	function fn_domyresv(){
 		//내 예약하기
-		var action = "myreserv";
+		var action = "reserv";
 		var isLogin = "${isLogin}";
-		if(isLogin=="false"||isLogin==""){
+		if(isLogin=="false"||isLogin.length==0){
 			if (confirm("로그인 후 진행해 주세요")) {
 	            // 사용자가 확인을 선택한 경우 action 값을 URL로 전달하고 이동합니다.
 	            var loginurl = "<%=contextPath%>/member/loginForm.do?action=" + action;
@@ -112,8 +112,20 @@ document.addEventListener("DOMContentLoaded", function() {
 	
 	function fn_myreserv(){
 		//내 예약 보기
-		var myrsvurl = "<%=contextPath%>/reservation/getlistMyReservations.do?mid=${memVO.mid}";
-		window.location.href=myrsvurl;
+		var action = "myreserv";
+		var isLogin = "${isLogin}";
+		if(isLogin=="false"||isLogin.length==0){
+			if (confirm("로그인 후 진행해 주세요")) {
+	            // 사용자가 확인을 선택한 경우 action 값을 URL로 전달하고 이동합니다.
+	            var loginurl = "<%=contextPath%>/member/loginForm.do?action=" + action;
+	            window.location.href = loginurl;
+	        }
+			else{
+				var myrsvurl = "<%=contextPath%>/reservation/getlistMyReservations.do?mid=${memVO.mid}";
+				window.location.href=myrsvurl;
+			}
+		}
+		
 	}
 	
 	function fn_allreserv(){
@@ -166,7 +178,7 @@ a{
           </a>
          <ul class="dropdown-menu p-4">
           	<div id="member_menu">
-	          	<li><a class="dropdown-item" href="#" onClick="fn_reserv()">예방접종 예약</a></li>
+	          	<li><a class="dropdown-item" href="#" onClick="fn_domyresv()">예방접종 예약</a></li>
 	            <li><a class="dropdown-item" href="#" onClick="fn_myreserv()">예방접종 관리</a></li>
 	            <li><hr class="dropdown-divider"></li>
 	            <li><a class="dropdown-item" href="<%=request.getContextPath()%>/hospital/getlistHospital.do">지정의료기관 찾기</a></li>

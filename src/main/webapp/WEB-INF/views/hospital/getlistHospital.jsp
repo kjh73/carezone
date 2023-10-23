@@ -227,7 +227,7 @@ window.onload=function(){
 						result += '<td>예약가능</td>';
 						result += "<td><a href='${contextPath}/reservation/getreservationForm.do?hosname="+VO.hosname+"&vccname="+originalVccname+"&hosno="+VO.hosno+"'>";
 						result += '예약</a></td>';
-						result += '<td><a href="#" onClick="fn_inserthosCart('+VO.hosno+','+VO.hosname+')">담기</a></td></tr>';
+						result += '<td><a href="#" onClick="fn_inserthosCart('+VO.hosno+', \''+VO.hosname+'\')">담기</a></td></tr>';
 					}
 					else if(VO.vccquantity===null){
 						result += '<td>백신을 선택해주세요.</td>';
@@ -297,7 +297,7 @@ window.onload=function(){
 	
 	function fn_inserthosCart(hosno,hosname){
 		
-		console.log("왔다.");
+		//console.log("왔다.");
 		var action = "insertcart"
 		var isLogin = "${isLogin}";
 		var isAdminLogin = "${isAdminLogin}";

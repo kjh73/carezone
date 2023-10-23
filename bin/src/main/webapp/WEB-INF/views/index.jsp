@@ -246,24 +246,29 @@ function fn_notice_top_three(){
         success: function(data) {
            
            fn_notice_top(data);
-           
-            for(var i=0; i<data.length; i++){
-               
-               VO=data[i];
-            var date=VO.nwritedate;
-            var nwritedate = new Date(date);
+           if(data.length!=0){
+               for(var i=0; i<data.length; i++){
+                   
+                   VO=data[i];
+                var date=VO.nwritedate;
+                var nwritedate = new Date(date);
 
-            var formattedDate =formatDate(nwritedate);
-            console.log(formattedDate);
-            
-               result+="<li class='list-group-item'>";
-               result+="<a style='width: 70%;' class='fw-semibold' href='${contextPath}/notice/getDetailNotice.do?narticleno="+VO.narticleno+"'>"+VO.ntitle;
-               result+="</a><p style='width: 30%;' class='mb-0'>"+formattedDate+"</li>";
+                var formattedDate =formatDate(nwritedate);
+                console.log(formattedDate);
+                
+                   result+="<li class='list-group-item'>";
+                   result+="<a style='width: 70%;' class='fw-semibold' href='${contextPath}/notice/getDetailNotice.do?narticleno="+VO.narticleno+"'>"+VO.ntitle;
+                   result+="</a><p style='width: 30%;' class='mb-0'>"+formattedDate+"</li>";
+                   $("#notice_topthree").html(result);
+                   
+                   
+                }
+           }
+           else{
+        	   result+="<li class='list-group-item'>";
+               result+="<p>공지사항이 없습니다.</li>";
                $("#notice_topthree").html(result);
-               
-               
-            }
-           
+           }
         },
         error: function(xhr, status, error) {
             // 요청이 실패했을 때 실행되는 함수
@@ -276,10 +281,18 @@ function fn_notice_top_three(){
 
 function fn_notice_top(data){
    
-   var VO=data[1];
-   var topnotice="<a href='${contextPath}/notice/getDetailNotice.do?narticleno="+VO.narticleno+"'>"+VO.ntitle+"</a>";
-   
-   $("#top").html(topnotice);
+	if(data.length!=0){
+		   var VO=data[0];
+		   var topnotice="<a href='${contextPath}/notice/getDetailNotice.do?narticleno="+VO.narticleno+"'>"+VO.ntitle+"</a>";
+		   
+		   $("#top").html(topnotice);
+	}
+	else{
+		var topnotice="<p class='p-0 m-0'>공지사항이 없습니다.";
+		   
+		   $("#top").html(topnotice);
+	}
+
 }
 
  // 날짜를 변환할 함수
