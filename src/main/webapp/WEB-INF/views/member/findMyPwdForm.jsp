@@ -238,6 +238,28 @@ a{
 				<main class="form-sign mt-4" id="sign_form" style="display:block;">
 					<form action="<%=contextPath%>/member/findMyPwd.do" method="post">
 						<div class="m-auto">
+						
+							<!-- 아이디 입력 -->
+							<c:choose>
+								<c:when test="${empty myid}">
+									<div class="container mb-3" style="width:100%; padding:0px;">
+										<div class="idcheck-box col-md-3" style="width:100%;">
+											<label for="mid" class="subtitle-label form-label" style="width:100%;">아이디</label>
+											<input type="text" class="form-control me-2" id="mid" name="mid" style="width:245px;">
+										</div>
+									</div>
+								</c:when>
+								<c:when test="${!empty myid }">
+									<div class="container mb-3" style="width:100%; padding:0px;">
+										<div class="idcheck-box col-md-3" style="width:100%;">
+											<label for="mid" class="subtitle-label form-label" style="width:100%;">아이디</label>
+											<input type="text" class="form-control me-2" id="mid" name="mid" style="width:245px;" value="${myid }">
+										</div>
+									</div>
+								</c:when>
+							</c:choose>								
+							
+							
 							<!-- 이름 입력 -->
 							<div class="container mb-3" style="width:100%; padding:0px;">
 								<div class="idcheck-box col-md-3" style="width:100%;">
@@ -245,14 +267,7 @@ a{
 									<input type="text" class="form-control me-2" id="mname" name="mname" style="width:245px;" placeholder="이름 입력">
 								</div>
 							</div>
-							
-							<!-- 아이디 입력 -->
-							<div class="container mb-3" style="width:100%; padding:0px;">
-								<div class="idcheck-box col-md-3" style="width:100%;">
-									<label for="mid" class="subtitle-label form-label" style="width:100%;">아이디</label>
-									<input type="text" class="form-control me-2" id="mid" name="mid" style="width:245px;">
-								</div>
-							</div>
+
 							
 							<!-- 이메일 입력 -->
 							<div class="container mb-3" style="width:100%; padding:0px;">

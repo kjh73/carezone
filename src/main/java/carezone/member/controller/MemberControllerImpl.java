@@ -442,11 +442,24 @@ public class MemberControllerImpl implements MemberController {
 		System.out.println("MemberControllerImpl의 getfindMPForm() 도착");
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html; charset=utf-8");
-		ModelAndView mav = new ModelAndView();
+		String action = (String)request.getParameter("action");
 		String viewname = getViewName(request);
-		mav.setViewName(viewname);
+		ModelAndView mav = new ModelAndView();
 		
-		return mav;
+		if(action.length()==0) {
+			System.out.println("action의 값이 없습니다.");
+			mav.setViewName(viewname);
+			return mav;
+		}
+		else {
+			System.out.println("action : "+action);
+			String myid = (String)request.getParameter("myid");
+			System.out.println("회원 찾기 한 아이디 : "+myid);
+			
+			mav.addObject("myid", myid);
+			mav.setViewName(viewname);
+			return mav;
+		}		
 	}	
 	
 	

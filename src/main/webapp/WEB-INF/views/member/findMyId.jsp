@@ -141,7 +141,8 @@
 		window.location.href=loginurl;
 	}
 	function fn_pwdfind(){
-		var pfurl = "<%=contextPath%>/member/findMyPwdForm.do";
+		var myid = document.getElementById("mid").value;
+		var pfurl = "<%=contextPath%>/member/findMyPwdForm.do?action=findid&myid="+myid;
 		window.location.href=pfurl;
 	}
 	/*
@@ -240,7 +241,7 @@ a{
 								<label for="mid" class="subtitle-label form-label" style="width:100%; font-size: 15px;">회원의 아이디</label>
 								<div class="d-flex">
 									<div class="me-2">
-										<input type="text" class="form-control mb-2" name="mid" value="${mid }" disabled style="width:150px;">
+										<input type="text" class="form-control mb-2" id="mid" name="mid" value="${mid }" disabled style="width:150px;">
 										<button type="button" class="btn btn-primary me-2" id="findMyPwd" style="width:150px;" onClick="fn_pwdfind()">비밀번호 찾기</button>
 									</div>
 									<button type="button" class="btn btn-primary me-2" onClick="fn_loginBtn()">로그인하기</button>

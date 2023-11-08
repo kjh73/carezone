@@ -272,7 +272,7 @@ a{
 										<div class="idcheck-box col-md-3" style="width:100%;">
 											<label for="mpwd" class="subtitle-label form-label" style="width:100%;">새로운 비밀번호 입력</label>
 											<div class="pwdinput-box" style="display:flex;">
-												<input type="text" class="form-control" id="mpwd" name="mpwd" style="width:245px;" maxlength="20">
+												<input type="password" class="form-control" id="mpwd" name="mpwd" style="width:245px;" maxlength="20">
 												<div class="red ms-3 lh-lg" role="alert" id="mpwdalert" style="display:none;">
 													비밀번호는 필수입니다
 												</div>
@@ -286,7 +286,7 @@ a{
 									<div class="container mb-3" style="width:100%; padding:0px;">
 										<label for="mpwdcheck" class="subtitle-label form-label" style="width:100%;">입력한 비밀번호 확인</label>
 										<div class="col-md-3" style="width:100%; display:flex;">
-											<input type="text" class="form-control me-2" id="mpwdcheck" name="mpwdcheck" style="width:245px;">
+											<input type="password" class="form-control me-2" id="mpwdcheck" name="mpwdcheck" style="width:245px;">
 											<div class="red ms-3 lh-lg" role="alert" id="mpwdalert3" style="display:none;">
 												비밀번호는 필수입니다
 											</div>
