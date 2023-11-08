@@ -235,7 +235,6 @@ public class ReservationControllerImpl implements ReservationController {
 			else {
 				System.out.println("장바구니 일때");
 				int hcno = Integer.parseInt(hc_no);
-				
 				HosCartVO hcVO = new HosCartVO(hcno, memVO.getMid());
 				reservationService.insertReservation(rVO,hosno,hcVO);
 				ModelAndView mav=new ModelAndView("redirect:/reservation/getlistMyReservations.do?mid="+rid);

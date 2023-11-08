@@ -234,6 +234,9 @@ function stateList(){
 	function fn_step1_next(obj){
 		var urlParams = new URLSearchParams(window.location.search);
 		var hosname = urlParams.get('hosname');
+		var hchos_no = urlParams.get('hos_no');
+		console.log("hosname : "+hosname);
+		console.log("hos_no : "+hchos_no);
 		
 		<%--
 		var step2=document.getElementById("step2");
@@ -251,9 +254,10 @@ function stateList(){
 			step2.style.display="none";
 			step1.style.display="none";
 			step3.style.display="block";
-			var hos__no1=document.getElementById("hos__no1");
-			var hc_hosno = urlParams.get('hos_no');
-			hos__no1.value = hc_hosno;
+			//var hos__no1=document.getElementById("hos__no1");
+			//var hc_hosno = urlParams.get('hos_no');
+			hos__no1.value = hchos_no;
+			console.log("hos__no1.value : "+hos__no1.value);
 		}
 		
 		else{
@@ -445,6 +449,7 @@ function stateList(){
 		if(isLogin==""){
 			console.log("공백입니다.");
 		}
+		
 
 		var member_menu = document.getElementById("member_menu");
 		var admin_menu = document.getElementById("admin_menu");
@@ -671,8 +676,8 @@ function inputemail(){
 									    	<option id="daum.com" value="daum.com">daum.net</option>
 									    </select>
 									 </div>
-									 <button type="button" class="btn btn-primary ms-2" onClick="fn_memcheck()" id="mcBtn" style="display:block;">본인 확인</button>
-									 <button type="button" class="btn btn-primary ms-2" onClick="fn_emailcheck()" id="emBtn" style="display:none;">이메일 인증</button>
+									 <button type="button" class="btn btn-primary ms-2" onClick="fn_memcheck()" id="mcBtn" style="display:block;">가입여부 확인</button>
+									 <button type="button" class="btn btn-success ms-2" onClick="fn_emailcheck()" id="emBtn" style="display:none;">이메일 인증</button>
 								</div>
 							</div>
 							
