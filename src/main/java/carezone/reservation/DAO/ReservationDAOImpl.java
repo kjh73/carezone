@@ -52,17 +52,23 @@ public class ReservationDAOImpl implements ReservationDAO {
 	public void insertReservation(ReservationVO rsvVO, int hosno, HosCartVO hcVO) throws DataAccessException {
 		
 		System.out.println("――――――――――――――――ReservationDAO :  장바구니에서 insertReservation――――――――――――――――");
-		
+		System.out.println("hosno : "+hosno);
 		String rsubname=rsvVO.getRsubname();
 		if(rsubname==null||rsubname.length()==0) {
+			System.out.println("본인 접종 예약 mapper");
 			sqlsession.insert("mapper.reservation.insertReservation_self", rsvVO);
+			sqlsession.update("mapper.hospital.updateVccquantity",hosno);
+			sqlsession.delete("mapper.hoscart.deleteMyHosCart", hcVO);
 		}
 		else {
+			System.out.println("가족 접종 예약 mapper");
 			sqlsession.insert("mapper.reservation.insertReservation_family", rsvVO);
+			sqlsession.update("mapper.hospital.updateVccquantity",hosno);
+			sqlsession.delete("mapper.hoscart.deleteMyHosCart", hcVO);
 		}
 		
-		sqlsession.update("mapper.hospital.updateVccquantity",hosno);
-		sqlsession.insert("mapper.reservation.insertReservation", rsvVO);
+		//sqlsession.update("mapper.hospital.updateVccquantity",hosno);
+		//sqlsession.insert("mapper.reservation.insertReservation", rsvVO);
 		
 	}
 
