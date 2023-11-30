@@ -459,7 +459,7 @@ function stateList(){
 		var hoslist = document.getElementById("hoslist");
 		
 		if((isLogin=="true"&&isAdminLogin=="false")||(isLogin=="true"&&isAdminLogin.length==0)){
-
+			<%-- 회원 로그인 했을 때 보이는 메뉴 --%>
 			member_menu.style.display="block";
 			admin_menu.style.display="none";
 			memlist.style.display="block";
@@ -467,17 +467,22 @@ function stateList(){
 			hoslist.style.display="none";
 		}
 		else if((isAdminLogin=="true"&&isLogin=="false")||(isAdminLogin=="true"&&isLogin.length==0)){
-
+			<%-- 관리자 로그인 했을 때 보이는 메뉴 --%>
 			member_menu.style.display="none";
 			admin_menu.style.display="block";
 			memlist.style.display="none";
 			adlist.style.display="block";
 			hoslist.style.display="block";
 		}
-		else{
+		else if(isAdminLogin == "false" && isLogin == "false"){
+			<%-- 관리자, 회원 둘 다 false 일때 보이는 메뉴 --%>
 			member_menu.style.display="block";
 			admin_menu.style.display="none";
+			memlist.style.display="block";
+			adlist.style.display="none";
+			hoslist.style.display="none";
 		}
+		
 		
 		//관리자가 로그인했을 때
 		var step1 = document.getElementById("step1");

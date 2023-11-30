@@ -29,7 +29,7 @@ window.onload=function(){
 	var hoslist = document.getElementById("hoslist");
 	
 	if((isLogin=="true"&&isAdminLogin=="false")||(isLogin=="true"&&isAdminLogin.length==0)){
-
+		<%-- 회원 로그인 했을 때 보이는 메뉴 --%>
 		member_menu.style.display="block";
 		admin_menu.style.display="none";
 		memlist.style.display="block";
@@ -37,19 +37,63 @@ window.onload=function(){
 		hoslist.style.display="none";
 	}
 	else if((isAdminLogin=="true"&&isLogin=="false")||(isAdminLogin=="true"&&isLogin.length==0)){
-
+		<%-- 관리자 로그인 했을 때 보이는 메뉴 --%>
 		member_menu.style.display="none";
 		admin_menu.style.display="block";
 		memlist.style.display="none";
 		adlist.style.display="block";
 		hoslist.style.display="block";
 	}
+	else if(isAdminLogin == "false" && isLogin == "false"){
+		<%-- 관리자, 회원 둘 다 false 일때 보이는 메뉴 --%>
+		member_menu.style.display="block";
+		admin_menu.style.display="none";
+		memlist.style.display="block";
+		adlist.style.display="none";
+		hoslist.style.display="none";
+	}
+	
 	else{
 		member_menu.style.display="block";
 		admin_menu.style.display="none";
 	}
 
 }
+
+//--------------------------------- 로그인 해야 옆에 서비스 메뉴 들어갈 수 이씅ㅁ ----------------------//
+	function fn_domyresv(){
+		//내 예약하기
+		var action = "reserv";
+		var isLogin = "${isLogin}";
+		if(isLogin=="false"||isLogin.length==0){
+			if (confirm("로그인 후 진행해 주세요")) {
+	            // 사용자가 확인을 선택한 경우 action 값을 URL로 전달하고 이동합니다.
+	            var loginurl = "${contextPath}/member/loginForm.do?action=" + action;
+	            window.location.href = loginurl;
+	        }
+		}
+		else{
+			var resvurl = "${contextPath}/reservation/getreservationForm.do";
+			window.location.href=resvurl;
+		}
+	}
+	
+	function fn_myreserv(){
+		//내 예약 보기
+		var action = "myreserv";
+		var isLogin = "${isLogin}";
+		if(isLogin=="false"||isLogin.length==0){
+			if (confirm("로그인 후 진행해 주세요")) {
+	            // 사용자가 확인을 선택한 경우 action 값을 URL로 전달하고 이동합니다.
+	            var loginurl = "${contextPath}/member/loginForm.do?action=" + action;
+	            window.location.href = loginurl;
+	        }
+		}
+		else{
+			var myrsvurl = "${contextPath}/reservation/getlistMyReservations.do?mid=${memVO.mid}";
+			window.location.href=myrsvurl;
+		}
+	}
 //-------------------------------------------------------네비바 js-----------------------------
 	function stateList(){
 		
@@ -402,8 +446,8 @@ window.onload=function(){
                         </div>
                         <div class="card hos-service-box mt-2">
 		                  	<ul class="list-group list-group-flush">
-							    <li class="list-group-item a-mvcinsertform"><a class="vcc-alink" href="${contextPath}/reservation/getreservationForm.do">예방접종 예약</a></li>
-							    <li class="list-group-item a-mvclistform" id="memlist"><a class="vcc-alink" href="${contextPath}/reservation/getlistMyReservations.do">예방접종 예약 관리</a></li>
+							    <li class="list-group-item a-mvcinsertform"><a class="vcc-alink" href="#" onClick="fn_domyresv()">예방접종 예약</a></li>
+							    <li class="list-group-item a-mvclistform" id="memlist"><a class="vcc-alink" href="#" onClick="fn_myreserv()">예방접종 예약 관리</a></li>
 							    <li class="list-group-item a-mvclistform" id="adlist"><a class="vcc-alink" href="${contextPath}/reservation/getlistReservations.do">예방접종 예약 관리</a></li>
 							    <li class="list-group-item a-hopitalform active"><a class="vcc-alink" href="${contextPath}/hospital/getlistHospital.do">지정 의료기관 찾기</a></li>
 							    <li class="list-group-item a-hopitalform" id="hoslist"><a class="vcc-alink" href="${contextPath}/hospital/gethospitalForm.do">지정 의료기관 관리</a></li>

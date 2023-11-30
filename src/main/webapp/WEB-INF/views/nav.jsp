@@ -120,12 +120,11 @@ document.addEventListener("DOMContentLoaded", function() {
 	            var loginurl = "<%=contextPath%>/member/loginForm.do?action=" + action;
 	            window.location.href = loginurl;
 	        }
-			else{
-				var myrsvurl = "<%=contextPath%>/reservation/getlistMyReservations.do?mid=${memVO.mid}";
-				window.location.href=myrsvurl;
-			}
 		}
-		
+		else{
+			var myrsvurl = "<%=contextPath%>/reservation/getlistMyReservations.do?mid=${memVO.mid}";
+			window.location.href=myrsvurl;
+		}
 	}
 	
 	function fn_allreserv(){
